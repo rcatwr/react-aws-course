@@ -1,0 +1,27 @@
+Landon AWS
+ Routes needed:
+
+ /services ✔️
+ /accessibility ✔️
+ /footer_links✔️
+ /gallery✔️
+ /menu_links✔️
+ /arrival_info
+
+setup api
+
+1-- select 'Route'
+
+2-- select 'GET'
+
+3-- give it a name (create)
+
+4-- click the GET link and then create an Integration
+
+5-- select 'Lambda Function'
+
+6-- pick the lambda function you already named
+
+7-- click deploy
+
+8-- 

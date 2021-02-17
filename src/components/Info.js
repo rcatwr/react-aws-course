@@ -1,9 +1,23 @@
-import React from "react";
-import arrival_info from "./data/arrival_info.json";
-import servicesData from "./data/services.json";
-import accessibilityData from "./data/accessibility.json";
+import React, {useState, useEffect} from "react";
+// import arrivalInfoData from "./data/arrivalInfoData.json";
+// import servicesData from "./data/services.json";
+// import accessibilityData from "./data/accessibility.json";
+import { loadData } from './data/api';
 
 const Info = () => {
+
+  const [arrivalInfoData, setArrivalInfoData] = useState([]);
+  const [servicesData, setServicesData] = useState([]);
+  const [accessibilityData, setAccessibilityData] = useState([]);
+
+  useEffect(() => {
+    //step 2 load data
+    loadData('arrival_info', setArrivalInfoData);
+    loadData('services', setServicesData);
+    loadData('accessibility', setAccessibilityData);
+    //step 2 load data
+
+  }, []);
 
  
   return (
@@ -15,7 +29,7 @@ const Info = () => {
         <section id="arrivalinfo">
           <h2>Arrival Information</h2>
           <ul>
-            {arrival_info.map((info) => (
+            {arrivalInfoData.map((info) => (
               <li>
                 <strong>{info.title}</strong> {info.text}
               </li>

@@ -1,7 +1,16 @@
-import React from "react";
-import menuLinksData from "./data/menu_links.json";
+import React, { useState, useEffect } from "react";
+import { loadData } from "./data/api";
+//import menuLinksData from "./data/menu_links.json";
 
 const Header = () => {
+  //step 1 state var
+  const [menuLinksData, setMenuLinksData] = useState([]);
+
+  useEffect(() => {
+    //step 2 load data
+    loadData('menu_links', setMenuLinksData);
+  }, []);
+
   return (
     <header id="intro">
       <article className="fullheight">
@@ -27,8 +36,8 @@ const Header = () => {
             </a>
           </div>
           <ul>
-            {menuLinksData.map((link) => (
-              <li>
+            {menuLinksData.map((link, item) => (
+              <li key={item}>
                 <a className={`icon ${link.class}`} href={link.href}>
                   <span>{link.text}</span>
                 </a>

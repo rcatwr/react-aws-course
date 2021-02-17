@@ -1,27 +1,21 @@
-import React from "react";
-import gallery from './data/gallery.json'
+import React, { useEffect, useState } from "react";
+import { loadData } from "./data/api";
 
 const Welcome = () => {
-  
-  
+  const [galleryData, setMenuLinksData] = useState([]);
+
+  useEffect(() => {
+    //step 2 load data
+    loadData("gallery", setMenuLinksData);
+  }, []);
+
   return (
     <div className="scene" id="welcome">
       <article className="content">
         <div className="gallery">
-          {
-            
-            gallery.map((img)=>(
-
-              <img
-                className={img.class}
-                src={img.src}
-                alt={img.alt}
-              ></img>
-
-            ))
-
-          }
-         
+          {galleryData.map((img) => (
+            <img className={img.class} src={img.src} alt={img.alt}></img>
+          ))}
         </div>
         <h1>Welcome to the Landon&nbsp;Hotel</h1>
         <p>

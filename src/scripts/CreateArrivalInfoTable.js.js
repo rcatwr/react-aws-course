@@ -7,30 +7,19 @@ AWS.config.update({
 var dynamodb = new AWS.DynamoDB();
 
 var params = {
-  TableName: "MenuLinks",
+  TableName: "ArrivalInfo",
   KeySchema: [
     // Partition Key
-    { AttributeName: "href", KeyType: "HASH" },
+    { AttributeName: "title", KeyType: "HASH" },
     // Sort Keys
     { AttributeName: "text", KeyType: "RANGE"}  
   ],
   AttributeDefinitions: [
-    { AttributeName: "class", AttributeType: "S" },
-    { AttributeName: "href", AttributeType: "S" },
+    
+    { AttributeName: "title", AttributeType: "S" },
     { AttributeName: "text", AttributeType: "S" }
   ],
-  LocalSecondaryIndexes: [
-    {
-      IndexName: "ClassIndex",
-      KeySchema: [
-        { AttributeName: "href", KeyType: "HASH" },
-        { AttributeName: "class", KeyType: "RANGE" }
-      ],
-      Projection: {
-        ProjectionType: "KEYS_ONLY"
-      }
-    }
-  ], 
+ 
   ProvisionedThroughput: {
     ReadCapacityUnits: 10,
     WriteCapacityUnits: 10
